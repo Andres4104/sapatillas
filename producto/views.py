@@ -19,18 +19,12 @@ class CategoriaListView(ListView):
 class MarcaCreate(CreateView):
     model = Marca
     fields = '__all__'
-<<<<<<< HEAD
-=======
     success_url = reverse_lazy('marca-list')
->>>>>>> 3a3509f (Primer commit: inicia el repositorio de sapatillas)
 
 class CategoriaCreate(CreateView):
     model = Categoria
     fields = '__all__'
-<<<<<<< HEAD
-=======
     success_url = reverse_lazy('marca-list')
->>>>>>> 3a3509f (Primer commit: inicia el repositorio de sapatillas)
 
 class MarcaUpdate(UpdateView):
     model = Marca
@@ -57,10 +51,7 @@ class ZapatillaDetailView(DetailView):
 class ZapatillaCreateView(CreateView):
     model = Zapatilla
     fields = '__all__'
-<<<<<<< HEAD
-=======
     success_url = '/zapatillas/'
->>>>>>> 3a3509f (Primer commit: inicia el repositorio de sapatillas)
 
 class ZapatillaUpdateView(UpdateView):
     model = Zapatilla
