@@ -41,3 +41,6 @@ urlpatterns = [
     path('zapatillas/<int:pk>/editar/', views.ZapatillaUpdateView.as_view(), name='zapatilla-update'),
     path('zapatillas/<int:pk>/eliminar/', views.ZapatillaDeleteView.as_view(), name='zapatilla-delete'),
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
