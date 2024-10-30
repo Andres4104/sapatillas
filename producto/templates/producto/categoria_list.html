@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block title %}Lista de Categorías{% endblock %}
+
+{% block section %}
+<h2>Lista de Categorías</h2>
+<hr>
+{% endblock section %}
+
+{% block maincontent %}
+<a href="{% url 'categoria-create' %}">Nueva Categoría</a>
+
+<table>
+    <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for categoria in object_list %}
+            <tr>
+                <td>{{ categoria.nombre }}</td>
+                <td>
+                    <a href="{% url 'categoria-detail' categoria.pk %}">Ver</a>
+                    <a href="{% url 'categoria-update' categoria.pk %}">Editar</a>
+                    <a href="{% url 'categoria-delete' categoria.pk %}">Eliminar</a>
+                </td>
+            </tr>
+        {% empty %}
+            <tr>
+                <td colspan="2">No hay categorías disponibles.</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock maincontent %}

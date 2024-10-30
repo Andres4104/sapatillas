@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block title %}Detalle de Zapatilla{% endblock %}
+
+{% block maincontent %}
+<div class="container">
+    <h2>Detalle de Zapatilla</h2>
+    <p><strong>Nombre:</strong> {{ zapatilla.nombre }}</p>
+    <p><strong>Marca:</strong> {{ zapatilla.marca }}</p>
+    <p><strong>Categoría:</strong> {{ zapatilla.categoria }}</p>
+    <p><strong>Precio:</strong> ${{ zapatilla.precio }}</p>
+    
+    <a href="{% url 'zapatilla-update' zapatilla.id %}" class="btn btn-warning">Editar</a>
+    <a href="{% url 'zapatilla-delete' zapatilla.id %}" class="btn btn-danger">Eliminar</a>
+    <a href="{% url 'zapatilla-list' %}" class="btn btn-secondary">Volver a la lista</a>
+</div>
+{% endblock %}

@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block title %}Eliminar Marca{% endblock %}
+
+{% block section %}
+<h2>Eliminar Marca</h2>
+<hr>
+{% endblock section %}
+
+{% block maincontent %}
+<p>¿Estás seguro de que quieres eliminar la marca "{{ object.nombre }}"?</p>
+
+<form method="post">
+    {% csrf_token %}
+    <button type="submit">Confirmar</button>
+</form>
+
+<a href="{% url 'marca-list' %}">Cancelar</a>
+{% endblock maincontent %}

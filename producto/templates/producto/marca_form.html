@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block title %}Formulario de Marca{% endblock %}
+
+{% block section %}
+<h2>{% if object %}Editar Marca{% else %}Nueva Marca{% endif %}</h2>
+<hr>
+{% endblock section %}
+
+{% block maincontent %}
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Guardar</button>
+</form>
+
+<a href="{% url 'marca-list' %}">Volver a la lista de Marcas</a>
+{% endblock maincontent %}

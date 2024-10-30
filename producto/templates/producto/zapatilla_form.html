@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block title %}Crear Nueva Zapatilla{% endblock %}
+
+{% block maincontent %}
+<div class="container">
+    <h2>Crear Nueva Zapatilla</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">Guardar</button>
+        <a href="{% url 'zapatilla-list' %}" class="btn btn-secondary">Cancelar</a>
+    </form>
+</div>
+{% endblock %}

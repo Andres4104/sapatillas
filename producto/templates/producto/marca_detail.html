@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block title %}Detalle de Marca{% endblock %}
+
+{% block section %}
+<h2>Detalle de Marca: {{ object.nombre }}</h2>
+<hr>
+{% endblock section %}
+
+{% block maincontent %}
+<p><strong>Nombre:</strong> {{ object.nombre }}</p>
+<p><strong>Logo:</strong> <img src="{{ object.logo.url }}" alt="{{ object.nombre }}"></p>
+
+<a href="{% url 'marca-list' %}">Volver a la lista de Marcas</a>
+{% endblock maincontent %}
