@@ -2,6 +2,8 @@ from django.shortcuts import render
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from .models import Marca, Categoria , Zapatilla
 from django.urls import  reverse_lazy
+from django.http import HttpResponse
+
 # Create your views here.
 
 class MarcaDetailView(DetailView):
@@ -60,3 +62,27 @@ class ZapatillaUpdateView(UpdateView):
 class ZapatillaDeleteView(DeleteView):
     model = Zapatilla
     success_url = reverse_lazy('zapatilla-list')
+    
+def buscar(request):
+    query = request.GET.get('query', '')  # Obtiene el término de búsqueda
+    if query:
+        # Realiza la búsqueda en el modelo Zapatilla, buscando por el nombre de la zapatilla
+        resultados = Zapatilla.objects.filter(nombre__icontains=query)
+    else:
+        resultados = Zapatilla.objects.none()  # Si no hay búsqueda, no hay resultados
+
+    # Devuelve los resultados a tu template
+    return render(request, 'producto/resultados_busqueda.html', {'resultados': resultados})
+
+def dashboard(request):
+    # Obtener los datos de los modelos que quieres mostrar
+    zapatillas = Zapatilla.objects.all()  # O algún filtro específico si es necesario
+    marcas = Marca.objects.all()
+    categorias = Categoria.objects.all()
+
+    # Pasar los datos al template
+    return render(request, 'producto/dashboard.html', {
+        'zapatillas': zapatillas,
+        'marcas': marcas,
+        'categorias': categorias,
+    })

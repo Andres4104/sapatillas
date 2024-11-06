@@ -17,11 +17,13 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from producto import views
+from producto.views import dashboard
 from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', dashboard, name='dashboard'),  # Página de inicio
 
     path('marcas/', views.MarcaListView.as_view(), name='marca-list'),
     path('marcas/<int:pk>/', views.MarcaDetailView.as_view(), name='marca-detail'),
@@ -40,6 +42,8 @@ urlpatterns = [
     path('zapatillas/<int:pk>/', views.ZapatillaDetailView.as_view(), name='zapatilla-detail'),
     path('zapatillas/<int:pk>/editar/', views.ZapatillaUpdateView.as_view(), name='zapatilla-update'),
     path('zapatillas/<int:pk>/eliminar/', views.ZapatillaDeleteView.as_view(), name='zapatilla-delete'),
+    
+    path('buscar/', views.buscar, name='buscar'),
 ]
 
 if settings.DEBUG:
