@@ -3,14 +3,101 @@
 {% block title %}Eliminar Zapatilla{% endblock %}
 
 {% block maincontent %}
-<div class="container">
-    <h2>¿Estás seguro de que deseas eliminar esta zapatilla?</h2>
-    <p><strong>Nombre:</strong> {{ zapatilla.nombre }}</p>
-    <p><strong>Marca:</strong> {{ zapatilla.marca }}</p>
-    <form method="post">
-        {% csrf_token %}
-        <button type="submit" class="btn btn-danger">Eliminar</button>
-        <a href="{% url 'zapatilla-list' %}" class="btn btn-secondary">Cancelar</a>
-    </form>
+<div class="form-container">
+    <h2 class="title text-danger">¿Estás seguro de que deseas eliminar esta zapatilla?</h2>
+
+    <div class="confirmation-details">
+        <p><strong>Nombre:</strong> {{ zapatilla.nombre }}</p>
+        <p><strong>Marca:</strong> {{ zapatilla.marca }}</p>
+    </div>
+
+    <div class="confirmation-actions">
+        <form method="post">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-danger">Eliminar</button>
+            <a href="{% url 'zapatilla-list' %}" class="btn btn-secondary">Cancelar</a>
+        </form>
+    </div>
 </div>
+
+<style>
+    /* Main container for delete confirmation */
+    .form-container {
+        max-width: 600px;
+        margin: 20px auto;
+        padding: 30px;
+        background-color: #ffffff;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        border-radius: 15px;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        text-align: center;
+    }
+
+    /* Title */
+    .title {
+        color: #e74c3c;
+        margin-bottom: 25px;
+        font-size: 1.8em;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+
+    /* Confirmation details styling */
+    .confirmation-details {
+        text-align: center;
+        margin-bottom: 30px;
+        font-size: 1.1em;
+    }
+    .confirmation-details p {
+        margin: 12px 0;
+        color: #34495e;
+    }
+
+    /* Confirmation actions styling */
+    .confirmation-actions {
+        display: flex;
+        justify-content: space-between;
+    }
+    .btn {
+        padding: 12px 24px;
+        margin: 5px;
+        border-radius: 8px;
+        text-decoration: none;
+        font-size: 1rem;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        transition: background-color 0.3s, transform 0.3s;
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
+    }
+
+    .btn-danger {
+        background-color: #e74c3c;
+        color: white;
+    }
+    .btn-danger:hover {
+        background-color: #c0392b;
+        transform: translateY(-2px);
+    }
+
+    .btn-secondary {
+        background-color: #3498db;
+        color: white;
+    }
+    .btn-secondary:hover {
+        background-color: #2980b9;
+        transform: translateY(-2px);
+    }
+
+    /* Responsive design for smaller screens */
+    @media (max-width: 768px) {
+        .confirmation-actions {
+            flex-direction: column;
+        }
+
+        .btn {
+            width: 100%;
+            margin-bottom: 10px;
+        }
+    }
+</style>
+
 {% endblock %}

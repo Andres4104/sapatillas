@@ -1,9 +1,11 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h1>Lista de Zapatillas</h1>
+<h1 class="title text-center">Lista de Zapatillas</h1>
 
-<a href="{% url 'zapatilla-create' %}" class="btn btn-primary mb-4">Añadir Zapatilla</a>
+<div class="container text-center mb-4">
+    <a href="{% url 'zapatilla-create' %}" class="btn btn-primary">Nueva Zapatilla</a>
+</div>
 
 <div class="container">
     <div class="row">
@@ -12,21 +14,99 @@
             <div class="card">
                 {% if zapatilla.imagen %}
                 <a href="{% url 'zapatilla-detail' zapatilla.id %}">
-                    <img src="{{ zapatilla.imagen.url }}" class="card-img-top" alt="{{ zapatilla.nombre }}" style="height: 250px; object-fit: cover;">
+                    <img src="{{ zapatilla.imagen.url }}" class="card-img-top" alt="{{ zapatilla.nombre }}">
                 </a>
                 {% else %}
-                <div class="card-img-top" style="height: 250px; background-color: #f8f9fa; display: flex; align-items: center; justify-content: center;">
+                <div class="card-img-top no-image">
                     <p>No hay imagen disponible</p>
                 </div>
                 {% endif %}
                 <div class="card-body">
                     <h5 class="card-title">{{ zapatilla.nombre }}</h5>
                     <p class="card-text">Precio: ${{ zapatilla.precio }}</p>
-                    <a href="{% url 'zapatilla-detail' zapatilla.id %}" class="btn btn-primary">Ver Detalles</a>
+                    <a href="{% url 'zapatilla-detail' zapatilla.id %}" class="btn btn-secondary">Ver Detalles</a>
                 </div>
             </div>
         </div>
         {% endfor %}
     </div>
 </div>
+
+<style>
+    .title {
+        text-align: center;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        color: #2c3e50;
+        margin-bottom: 30px;
+    }
+
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    .card {
+        border: 1px solid #ddd;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+    }
+    .card-img-top {
+        border-radius: 10px 10px 0 0;
+        height: 250px;
+        width: 100%;
+        object-fit: cover;
+        object-position: center;
+    }
+    .no-image {
+        height: 250px;
+        background-color: #f8f9fa;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 10px 10px 0 0;
+    }
+
+    .card-body {
+        padding: 15px;
+        text-align: center;
+    }
+    .card-title {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        color: #2c3e50;
+        font-size: 1.25em;
+        margin-bottom: 10px;
+    }
+    .card-text {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        color: #7f8c8d;
+        font-size: 1em;
+        margin-bottom: 15px;
+    }
+
+    .btn {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        padding: 10px 20px;
+        border-radius: 5px;
+        text-decoration: none;
+        transition: background-color 0.3s, transform 0.3s;
+    }
+    .btn-primary {
+        background-color: #3498db;
+        color: white;
+        margin-bottom: 20px;
+    }
+    .btn-secondary {
+        background-color: #2c3e50;
+        color: white;
+    }
+    .btn:hover {
+        background-color: #2980b9;
+        transform: translateY(-2px);
+    }
+</style>
 {% endblock %}
