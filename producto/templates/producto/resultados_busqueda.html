@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h2>Resultados de la búsqueda</h2>
+  
+  {% if resultados %}
+    <ul>
+      {% for zapatilla in resultados %}
+        <li>
+          <img src="{{ zapatilla.imagen.url }}" alt="{{ zapatilla.nombre }}" width="100">  <!-- Muestra la imagen -->
+          <strong>{{ zapatilla.nombre }}</strong><br>
+          {{ zapatilla.descripcion }}<br>
+          <strong>Precio: ${{ zapatilla.precio }}</strong>
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>No se encontraron resultados.</p>
+  {% endif %}
+  
+{% endblock %}

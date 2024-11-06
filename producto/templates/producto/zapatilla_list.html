@@ -3,20 +3,30 @@
 {% block content %}
 <h1>Lista de Zapatillas</h1>
 
-<a href="{% url 'zapatilla-create' %}" class="btn btn-primary">Añadir Zapatilla</a>
+<a href="{% url 'zapatilla-create' %}" class="btn btn-primary mb-4">Añadir Zapatilla</a>
 
-<ul>
-    {% for zapatilla in object_list %}
-    <li>
-        <h3>{{ zapatilla.nombre }}</h3>
-        {% if zapatilla.imagen %}
-            <a href="{% url 'zapatilla-detail' zapatilla.id %}">
-                <img src="{{ zapatilla.imagen.url }}" alt="{{ zapatilla.nombre }}" style="width: 150px; height: auto;">
-            </a>
-        {% else %}
-            <p>No hay imagen disponible</p>
-        {% endif %}
-    </li>
-    {% endfor %}
-</ul>
+<div class="container">
+    <div class="row">
+        {% for zapatilla in object_list %}
+        <div class="col-md-4 mb-4">
+            <div class="card">
+                {% if zapatilla.imagen %}
+                <a href="{% url 'zapatilla-detail' zapatilla.id %}">
+                    <img src="{{ zapatilla.imagen.url }}" class="card-img-top" alt="{{ zapatilla.nombre }}" style="height: 250px; object-fit: cover;">
+                </a>
+                {% else %}
+                <div class="card-img-top" style="height: 250px; background-color: #f8f9fa; display: flex; align-items: center; justify-content: center;">
+                    <p>No hay imagen disponible</p>
+                </div>
+                {% endif %}
+                <div class="card-body">
+                    <h5 class="card-title">{{ zapatilla.nombre }}</h5>
+                    <p class="card-text">Precio: ${{ zapatilla.precio }}</p>
+                    <a href="{% url 'zapatilla-detail' zapatilla.id %}" class="btn btn-primary">Ver Detalles</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
 {% endblock %}
