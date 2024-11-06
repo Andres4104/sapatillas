@@ -7,7 +7,57 @@
 {% endblock section %}
 
 {% block maincontent %}
-<p><strong>Nombre:</strong> {{ object.nombre }}</p>
+<div class="detail-container">
+    <p><strong>Nombre:</strong> {{ object.nombre }}</p>
 
-<a href="{% url 'categoria-list' %}">Volver a la lista de Categorías</a>
+    <a href="{% url 'categoria-list' %}" class="btn btn-back">Volver a la lista de Categorías</a>
+</div>
+
+<style>
+    /* Detail container */
+    .detail-container {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #f9f9f9;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        text-align: center;
+        font-family: Arial, sans-serif;
+    }
+
+    /* Title */
+    h2 {
+        color: #333;
+        font-family: Arial, sans-serif;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+
+    /* Content styling */
+    p {
+        font-size: 18px;
+        color: #555;
+        margin: 15px 0;
+    }
+    strong {
+        color: #333;
+    }
+
+    /* Button styles */
+    .btn {
+        padding: 10px 20px;
+        margin-top: 20px;
+        text-decoration: none;
+        color: white;
+        background-color: #3498db;
+        border-radius: 5px;
+        font-family: Arial, sans-serif;
+        display: inline-block;
+    }
+    .btn:hover {
+        opacity: 0.9;
+    }
+</style>
+
 {% endblock maincontent %}

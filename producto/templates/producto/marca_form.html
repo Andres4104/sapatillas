@@ -7,11 +7,80 @@
 {% endblock section %}
 
 {% block maincontent %}
-<form method="post" enctype="multipart/form-data">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Guardar</button>
-</form>
+<div class="form-container">
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-save">Guardar</button>
+        <a href="{% url 'marca-list' %}" class="btn btn-back">Volver a la lista de Marcas</a>
+    </form>
+</div>
 
-<a href="{% url 'marca-list' %}">Volver a la lista de Marcas</a>
+<style>
+    /* Form container */
+    .form-container {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #f9f9f9;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+    }
+
+    /* Title */
+    h2 {
+        color: #333;
+        text-align: center;
+        font-family: Arial, sans-serif;
+        margin-bottom: 20px;
+    }
+
+    /* Form styles */
+    form {
+        display: flex;
+        flex-direction: column;
+    }
+
+    form p {
+        margin-bottom: 15px;
+    }
+
+    label {
+        font-weight: bold;
+        color: #555;
+    }
+
+    input[type="text"], input[type="file"], select, textarea {
+        width: 100%;
+        padding: 8px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        margin-top: 5px;
+        font-family: Arial, sans-serif;
+    }
+
+    /* Button styles */
+    .btn {
+        padding: 10px 20px;
+        margin-top: 15px;
+        text-decoration: none;
+        color: white;
+        font-family: Arial, sans-serif;
+        text-align: center;
+        display: inline-block;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+    .btn-save {
+        background-color: #4CAF50;
+    }
+    .btn-back {
+        background-color: #3498db;
+        margin-top: 10px;
+    }
+    .btn:hover {
+        opacity: 0.9;
+    }
+</style>
+
 {% endblock maincontent %}

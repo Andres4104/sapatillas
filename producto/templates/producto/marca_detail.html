@@ -7,8 +7,64 @@
 {% endblock section %}
 
 {% block maincontent %}
-<p><strong>Nombre:</strong> {{ object.nombre }}</p>
-<p><strong>Logo:</strong> <img src="{{ object.logo.url }}" alt="{{ object.nombre }}"></p>
+<div class="detail-container">
+    <p><strong>Nombre:</strong> {{ object.nombre }}</p>
+    <p><strong>Logo:</strong></p>
+    <div class="logo-container">
+        <img src="{{ object.logo.url }}" alt="{{ object.nombre }}" class="brand-logo">
+    </div>
 
-<a href="{% url 'marca-list' %}">Volver a la lista de Marcas</a>
+    <a href="{% url 'marca-list' %}" class="btn btn-back">Volver a la lista de Marcas</a>
+</div>
+
+<style>
+    /* Detail container */
+    .detail-container {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #f9f9f9;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        font-family: Arial, sans-serif;
+        text-align: center;
+    }
+
+    /* Title */
+    h2 {
+        color: #333;
+        font-family: Arial, sans-serif;
+        margin-bottom: 20px;
+    }
+
+    /* Logo styles */
+    .logo-container {
+        margin: 15px 0;
+        display: flex;
+        justify-content: center;
+    }
+    .brand-logo {
+        max-width: 150px;
+        height: auto;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        padding: 5px;
+    }
+
+    /* Button styles */
+    .btn {
+        padding: 10px 20px;
+        margin-top: 20px;
+        text-decoration: none;
+        color: white;
+        background-color: #3498db;
+        border-radius: 5px;
+        font-family: Arial, sans-serif;
+        display: inline-block;
+    }
+    .btn-back:hover {
+        opacity: 0.9;
+    }
+</style>
+
 {% endblock maincontent %}

@@ -7,12 +7,57 @@
 {% endblock section %}
 
 {% block maincontent %}
-<p>¿Estás seguro de que quieres eliminar la categoría "{{ object.nombre }}"?</p>
+<div class="delete-container">
+    <p class="warning-text">¿Estás seguro de que quieres eliminar la categoría "<strong>{{ object.nombre }}</strong>"?</p>
 
-<form method="post">
-    {% csrf_token %}
-    <button type="submit">Confirmar</button>
-</form>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-confirm">Confirmar</button>
+        <a href="{% url 'categoria-list' %}" class="btn btn-cancel">Cancelar</a>
+    </form>
+</div>
 
-<a href="{% url 'categoria-list' %}">Cancelar</a>
+<style>
+    /* Container */
+    .delete-container {
+        max-width: 500px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #f9f9f9;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        text-align: center;
+        font-family: Arial, sans-serif;
+    }
+
+    /* Warning text */
+    .warning-text {
+        color: #e74c3c;
+        font-size: 18px;
+        font-weight: bold;
+        margin-bottom: 20px;
+    }
+
+    /* Button styles */
+    .btn {
+        padding: 10px 20px;
+        margin: 5px;
+        text-decoration: none;
+        color: white;
+        font-family: Arial, sans-serif;
+        border-radius: 5px;
+        cursor: pointer;
+        display: inline-block;
+    }
+    .btn-confirm {
+        background-color: #e74c3c;
+    }
+    .btn-cancel {
+        background-color: #3498db;
+    }
+    .btn:hover {
+        opacity: 0.9;
+    }
+</style>
+
 {% endblock maincontent %}

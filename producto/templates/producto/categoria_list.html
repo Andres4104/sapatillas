@@ -7,30 +7,95 @@
 {% endblock section %}
 
 {% block maincontent %}
-<a href="{% url 'categoria-create' %}">Nueva Categoría</a>
+<div class="container">
+    <a href="{% url 'categoria-create' %}" class="btn btn-primary">Nueva Categoría</a>
 
-<table>
-    <thead>
-        <tr>
-            <th>Nombre</th>
-            <th>Acciones</th>
-        </tr>
-    </thead>
-    <tbody>
-        {% for categoria in object_list %}
+    <table class="category-table">
+        <thead>
             <tr>
-                <td>{{ categoria.nombre }}</td>
-                <td>
-                    <a href="{% url 'categoria-detail' categoria.pk %}">Ver</a>
-                    <a href="{% url 'categoria-update' categoria.pk %}">Editar</a>
-                    <a href="{% url 'categoria-delete' categoria.pk %}">Eliminar</a>
-                </td>
+                <th>Nombre</th>
+                <th>Acciones</th>
             </tr>
-        {% empty %}
-            <tr>
-                <td colspan="2">No hay categorías disponibles.</td>
-            </tr>
-        {% endfor %}
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+            {% for categoria in object_list %}
+                <tr>
+                    <td>{{ categoria.nombre }}</td>
+                    <td>
+                        <a href="{% url 'categoria-detail' categoria.pk %}" class="btn btn-view">Ver</a>
+                        <a href="{% url 'categoria-update' categoria.pk %}" class="btn btn-edit">Editar</a>
+                        <a href="{% url 'categoria-delete' categoria.pk %}" class="btn btn-delete">Eliminar</a>
+                    </td>
+                </tr>
+            {% empty %}
+                <tr>
+                    <td colspan="2">No hay categorías disponibles.</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<style>
+    /* Container */
+    .container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+    }
+
+    /* Title */
+    h2 {
+        color: #333;
+        text-align: center;
+        font-family: Arial, sans-serif;
+        margin-bottom: 20px;
+    }
+
+    /* Button styles */
+    .btn {
+        padding: 8px 16px;
+        margin: 5px;
+        border-radius: 5px;
+        text-decoration: none;
+        color: white;
+        font-family: Arial, sans-serif;
+    }
+    .btn-primary {
+        background-color: #4CAF50;
+    }
+    .btn-view {
+        background-color: #3498db;
+    }
+    .btn-edit {
+        background-color: #f1c40f;
+    }
+    .btn-delete {
+        background-color: #e74c3c;
+    }
+    .btn:hover {
+        opacity: 0.8;
+    }
+
+    /* Table styles */
+    .category-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+        font-family: Arial, sans-serif;
+    }
+    .category-table th, .category-table td {
+        padding: 12px 15px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+    }
+    .category-table th {
+        background-color: #f4f4f4;
+        font-weight: bold;
+    }
+    .category-table tr:hover {
+        background-color: #f1f1f1;
+    }
+</style>
+
 {% endblock maincontent %}
