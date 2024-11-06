@@ -43,7 +43,7 @@ urlpatterns = [
     path('zapatillas/<int:pk>/editar/', views.ZapatillaUpdateView.as_view(), name='zapatilla-update'),
     path('zapatillas/<int:pk>/eliminar/', views.ZapatillaDeleteView.as_view(), name='zapatilla-delete'),
     
-    path('buscar/', views.buscar, name='buscar'),
+    #path('buscar/', views.buscar, name='buscar'),
 ]
 
 if settings.DEBUG:

@@ -26,15 +26,17 @@ class MarcaCreate(CreateView):
 class CategoriaCreate(CreateView):
     model = Categoria
     fields = '__all__'
-    success_url = reverse_lazy('marca-list')
+    success_url = reverse_lazy('categoria-list')
 
 class MarcaUpdate(UpdateView):
     model = Marca
     fields = '__all__'
+    success_url = reverse_lazy('marca-list')
 
 class CategoriaUpdate(UpdateView):
     model = Categoria
     fields = '__all__'
+    success_url = reverse_lazy('categoria-list')
 
 class MarcaDelete(DeleteView):
     model = Marca
@@ -58,25 +60,15 @@ class ZapatillaCreateView(CreateView):
 class ZapatillaUpdateView(UpdateView):
     model = Zapatilla
     fields = '__all__'
+    success_url = '/zapatillas/'
 
 class ZapatillaDeleteView(DeleteView):
     model = Zapatilla
     success_url = reverse_lazy('zapatilla-list')
     
-def buscar(request):
-    query = request.GET.get('query', '')  # Obtiene el término de búsqueda
-    if query:
-        # Realiza la búsqueda en el modelo Zapatilla, buscando por el nombre de la zapatilla
-        resultados = Zapatilla.objects.filter(nombre__icontains=query)
-    else:
-        resultados = Zapatilla.objects.none()  # Si no hay búsqueda, no hay resultados
-
-    # Devuelve los resultados a tu template
-    return render(request, 'producto/resultados_busqueda.html', {'resultados': resultados})
 
 def dashboard(request):
-    # Obtener los datos de los modelos que quieres mostrar
-    zapatillas = Zapatilla.objects.all()  # O algún filtro específico si es necesario
+    zapatillas = Zapatilla.objects.all()  # todos datos
     marcas = Marca.objects.all()
     categorias = Categoria.objects.all()
 
@@ -86,3 +78,18 @@ def dashboard(request):
         'marcas': marcas,
         'categorias': categorias,
     })
+
+
+
+
+
+def buscar(request):
+    query = request.GET.get('query', '')  # Obtiene busqueda
+    if query:
+        # busca en zapatillas
+        resultados = Zapatilla.objects.filter(nombre__icontains=query)
+    else:
+        resultados = Zapatilla.objects.none() 
+
+    # resultados al template
+    return render(request, 'producto/resultados_busqueda.html', {'resultados': resultados})
